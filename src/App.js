@@ -1,8 +1,13 @@
-import logo from "./logo.svg";
 import "./App.css";
 import InputField from "./components/inputField.jsx";
-import ListsOfTodo from "./components/listOfTodos.jsx"
+import ListsOfTodo from "./components/listOfTodos.jsx";
 function App() {
+ 
+  let counter = localStorage.length + 1;
+  let todoLists = [];
+  for (let i = 1; i <= localStorage.length; i++) {
+    todoLists.push(localStorage.getItem("todo" + i));
+  }
   return (
     <div className="App">
       <div className="App__header">
@@ -10,19 +15,28 @@ function App() {
       </div>
       <div className="todo__wrapper">
         <div className="input__wrapper">
-          <InputField buttonClicked ={buttonClicked}></InputField>
+          <InputField buttonClicked={buttonClicked}></InputField>
         </div>
         <div className="lists__wrapper">
-          <ListsOfTodo></ListsOfTodo>
+          {todoLists.map((lists) => (
+             <ListsOfTodo key={lists} lists={lists}></ListsOfTodo>
+          )
+          )}
         </div>
       </div>
     </div>
   );
 
-  function buttonClicked(){
-    console.log("clicked")
-    let inputValue = document.getElementById("input").value
-    console.log(inputValue)
+  function buttonClicked() {
+    let inputValue = document.getElementById("input").value;
+    if (counter == null) {
+      counter = 1;
+    }
+    console.log(todoLists)
+
+    localStorage.setItem(`todo${counter}`, JSON.stringify(inputValue));
+    // counter = localStorage.key(localStorage.length)
+    counter++;
   }
 }
 
