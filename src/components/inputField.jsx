@@ -1,8 +1,15 @@
-function inputField({buttonClicked}){
+
+function inputField({ButtonClicked}){
+   
     return(
         <div>
-            <input type="text" name="" id="input" />
-            <button className="enterButton" onClick={buttonClicked}>Enter</button>
+            <input onKeyPress={(e) => {
+                if(e.key === "Enter"){
+                    document.getElementById("enterButt").click()
+                }
+            }}
+            type="text" name="" id="input" />
+            <button id="enterButt" className="enterButton" onClick={ButtonClicked}>Enter</button>
         </div>
     )
 }
