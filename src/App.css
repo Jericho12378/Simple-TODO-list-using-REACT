@@ -81,6 +81,8 @@
 }
 .todo{
   font-size: 20px;
+  width: 80%;
+  word-wrap: break-word;
 }
 #checkbox{
   margin-right: 18px;
