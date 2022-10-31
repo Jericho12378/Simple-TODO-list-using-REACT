@@ -1,5 +1,6 @@
 
 
+import { faL } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
 import "./App.css";
 import InputField from "./components/inputField.jsx";
@@ -66,6 +67,9 @@ function App() {
 
   function ButtonClicked() {
     let inputValue = document.getElementById("input").value;
+    if(inputValue == ""){
+      return false
+    }
     if (counter == null) {
       counter = 1;
     }
@@ -73,7 +77,7 @@ function App() {
     localStorage.setItem(`todo${counter}`, JSON.stringify(inputValue));
     // counter = localStorage.key(localStorage.length)
     counter++;
-    document.getElementById("input").value = " "
+    document.getElementById("input").value = ""
   }
 }
 
